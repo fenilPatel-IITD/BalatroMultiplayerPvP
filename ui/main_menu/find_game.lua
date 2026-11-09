@@ -132,6 +132,17 @@ local function queue_kind(mode)
 	return mode.ruleset_key ~= nil and MPAPI.QueueKind.RANKED or MPAPI.QueueKind.CASUAL
 end
 
+-- Ranked pillars read "<ruleset> / Ranked"; a Casual pillar may take its name from its ruleset.
+local function pillar_name(mode)
+	if mode.ruleset_key then
+		return { mode.short_name or PVP.ruleset_display_name(mode.ruleset_key), localize("k_pvp_ranked") }
+	end
+	if mode.display_ruleset then
+		return PVP.ruleset_display_name(mode.display_ruleset)
+	end
+	return mode.name
+end
+
 -- Reactive SELECT button: QUEUE (orange) when idle or a different pillar is the active queue,
 -- CANCEL (red) while this exact pillar's own queue is PvP's one active queue
 -- (PVP._active_queue_matches, pvp_api/queue.lua). A pillar the account's standing refuses
@@ -170,9 +181,10 @@ local function build_select(mode)
 				and { cancel = true }
 				or { ruleset_key = mode.ruleset_key, gamemode_key = mode.gamemode_key }
 		end
-		return { nodes = { { n = G.UIT.R, config = config, nodes = {
+		local label = PVP.UI.label_text(pillar_name(mode)) .. ": " .. (this_queued and "CANCEL" or "QUEUE")
+		return { nodes = { PVP.UI.labelled_button({ n = G.UIT.R, config = config, nodes = {
 			{ n = G.UIT.T, config = { text = this_queued and "CANCEL" or "QUEUE", scale = 0.4, colour = unavailable and G.C.UI.TEXT_INACTIVE or G.C.UI.TEXT_LIGHT, shadow = not unavailable } },
-		} } } }
+		} }, label) } }
 	end)
 	_select_els[mode.key] = el
 	return el.node
@@ -197,9 +209,9 @@ local function build_group_select(mode)
 			config.button = "mp_pvp_group_queue_mode"
 			config.ref_table = { gamemode_key = mode.gamemode_key }
 		end
-		return { nodes = { { n = G.UIT.R, config = config, nodes = {
+		return { nodes = { PVP.UI.labelled_button({ n = G.UIT.R, config = config, nodes = {
 			{ n = G.UIT.T, config = { text = "QUEUE", scale = 0.4, colour = lit and G.C.UI.TEXT_LIGHT or G.C.UI.TEXT_INACTIVE, shadow = lit } },
-		} } } }
+		} }, PVP.UI.label_text(pillar_name(mode)) .. ": QUEUE") } }
 	end)
 	_select_els[mode.key] = el
 	return el.node
@@ -292,17 +304,6 @@ local function build_order_card()
 			} },
 		} },
 	} })
-end
-
--- Ranked pillars read "<ruleset> / Ranked"; a Casual pillar may take its name from its ruleset.
-local function pillar_name(mode)
-	if mode.ruleset_key then
-		return { mode.short_name or PVP.ruleset_display_name(mode.ruleset_key), localize("k_pvp_ranked") }
-	end
-	if mode.display_ruleset then
-		return PVP.ruleset_display_name(mode.display_ruleset)
-	end
-	return mode.name
 end
 
 local function build_items(modes, group)

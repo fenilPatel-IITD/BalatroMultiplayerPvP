@@ -4,6 +4,7 @@
 G.FUNCS.pvp_ready_button = function(e)
 	if e.children[1].config.ref_table[e.children[1].config.ref_value] == localize("Select", "blind_states") then
 		e.config.button = "mp_toggle_ready"
+		e.config.focus_args = e.config.focus_args or {}
 		e.config.one_press = false
 		e.children[1].config.ref_table = PVP.GAME
 		e.children[1].config.ref_value = "ready_blind_text"

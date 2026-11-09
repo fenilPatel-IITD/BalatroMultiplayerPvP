@@ -5,7 +5,7 @@ function PVP.lobby.create_buttons()
 	end
 	local b = L.buttons
 
-	b.start_game = MPAPI.disableable_button({
+	b.start_game = PVP.UI.disableable_button({
 		id = "mp_pvp_start_game",
 		button = "mp_pvp_start_game",
 		colour = G.C.BLUE,
@@ -30,7 +30,7 @@ function PVP.lobby.create_buttons()
 			return true
 		end,
 	})
-	b.party_find_game = MPAPI.disableable_button({
+	b.party_find_game = PVP.UI.disableable_button({
 		id = "mp_pvp_party_find_game",
 		button = "mp_pvp_party_find_game",
 		colour = G.C.BLUE,
@@ -53,8 +53,8 @@ function PVP.lobby.create_buttons()
 		col = true,
 		enabled = true,
 	}
-	b.ready = MPAPI.disableable_button(b.ready_args)
-	b.lobby_options = MPAPI.disableable_button({
+	b.ready = PVP.UI.disableable_button(b.ready_args)
+	b.lobby_options = PVP.UI.disableable_button({
 		id = "mp_pvp_lobby_options",
 		button = "mp_pvp_lobby_options",
 		colour = G.C.ORANGE,
@@ -71,7 +71,7 @@ function PVP.lobby.create_buttons()
 			return PVP.LOBBY.config.manhunt or PVP.LOBBY.config.team_based or PVP._pvp_kind == PVP.LobbyAccess.PRIVATE
 		end,
 	})
-	b.view_code = MPAPI.disableable_button({
+	b.view_code = PVP.UI.disableable_button({
 		id = "mp_pvp_view_code",
 		button = "mp_pvp_view_code",
 		colour = G.C.GREEN,
@@ -81,7 +81,7 @@ function PVP.lobby.create_buttons()
 		scale = 0.45,
 		enabled = true,
 	})
-	b.copy_code = MPAPI.disableable_button({
+	b.copy_code = PVP.UI.disableable_button({
 		id = "mp_pvp_copy_code",
 		button = "mp_pvp_copy_code",
 		colour = G.C.PURPLE,
@@ -91,7 +91,7 @@ function PVP.lobby.create_buttons()
 		scale = 0.45,
 		enabled = true,
 	})
-	b.leave = MPAPI.disableable_button({
+	b.leave = PVP.UI.disableable_button({
 		id = "mp_pvp_leave_lobby",
 		button = "mp_pvp_leave_lobby",
 		colour = G.C.RED,

@@ -1,3 +1,26 @@
+-- Explicit focus metadata for PvP's reactive buttons. Keep MPAPI's enabled
+-- checks: disabled buttons must stay non-interactive for every input method.
+function PVP.UI.disableable_button(args)
+	args.focus_args = args.focus_args or {}
+	return MPAPI.disableable_button(args)
+end
+
+function PVP.UI.label_text(label)
+	return type(label) == "table" and table.concat(label, " ") or label
+end
+
+-- Pillar actions all render as QUEUE/CREATE/START. Give the action its mode's
+-- name without changing the visual layout. Unknown config fields are harmless
+-- when Blindfold isn't installed.
+function PVP.UI.labelled_button(node, label)
+	node.config.blindfold = { label = label }
+	if node.config.button then
+		node.config.focus_args = node.config.focus_args or {}
+		node.config.hover = true
+	end
+	return node
+end
+
 function PVP.UTILS.save_username(text)
 	PVP.ACTIONS.set_username(text)
 	PVP.config.username = text

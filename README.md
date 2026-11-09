@@ -40,6 +40,12 @@ Steps:
 
 The old `Multiplayer` mod conflicts with this one; remove it before installing. More help is on [balatromp.com](https://balatromp.com) and in the [Discord](https://discord.gg/balatromp).
 
+## Blindfold accessibility
+
+Basic menu support is available when [Blindfold](https://github.com/bradjrenshaw/Blindfold) is installed; it is not a required dependency. Use Blindfold's configured navigation and confirm keys to reach the multiplayer account/back panel, PvP menus, and enabled lobby buttons. Mode-selection actions include the mode's name, and Ready/Unready and Find Game/Cancel labels follow their current state.
+
+This is basic control navigation and labeling, not full narration of multiplayer scores, timers, or lobby events. See the [accessibility test checklist](tests/scenarios/blindfold.md) for coverage and manual verification steps.
+
 ## AI Content Disclaimer
 
 This mod does NOT use AI for art or other assets. This mod uses generative AI in it's development as a tool for writing code.

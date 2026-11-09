@@ -75,13 +75,12 @@ local function build_items(intent)
 	local modes = intent == "create_lobby" and lobby_modes() or PRACTICE_MODES
 	local items = {}
 	for _, mode in ipairs(modes) do
+		local action = intent == "create_lobby" and "CREATE" or "START"
+		local select = MPAPI.ui_pillar_select_button({ label = action, button = mode.button })
 		items[#items + 1] = {
 			id = mode.key,
 			icon = PVP.mode_chip_sprite(mode.chip_row),
-			select = MPAPI.ui_pillar_select_button({
-				label = intent == "create_lobby" and "CREATE" or "START",
-				button = mode.button,
-			}),
+			select = PVP.UI.labelled_button(select, PVP.UI.label_text(pillar_name(mode, intent)) .. ": " .. action),
 			name_plate = MPAPI.ui_pillar_name_plate({
 				lines = pillar_name(mode, intent),
 				bg_colour = mix_colours(mode.colour, G.C.BLACK, 0.3),

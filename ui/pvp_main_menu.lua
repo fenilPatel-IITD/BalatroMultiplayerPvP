@@ -27,8 +27,8 @@ function PVP.main_menu.create_buttons()
 			return MPAPI.is_connected()
 		end,
 	}
-	b.find_game = MPAPI.disableable_button(M.find_game_args)
-	b.create_lobby = MPAPI.disableable_button({
+	b.find_game = PVP.UI.disableable_button(M.find_game_args)
+	b.create_lobby = PVP.UI.disableable_button({
 		id = "mp_pvp_create_lobby",
 		button = "mp_pvp_create_lobby",
 		colour = G.C.GREEN,
@@ -41,7 +41,7 @@ function PVP.main_menu.create_buttons()
 			return MPAPI.is_connected()
 		end,
 	})
-	b.join_by_code = MPAPI.disableable_button({
+	b.join_by_code = PVP.UI.disableable_button({
 		id = "mp_pvp_join_lobby_by_code",
 		button = "mp_pvp_join_lobby_by_code",
 		colour = G.C.RED,
@@ -53,7 +53,7 @@ function PVP.main_menu.create_buttons()
 			return MPAPI.is_connected()
 		end,
 	})
-	b.join_from_clipboard = MPAPI.disableable_button({
+	b.join_from_clipboard = PVP.UI.disableable_button({
 		id = "mp_pvp_join_lobby_from_clipboard",
 		button = "mp_pvp_join_lobby_from_clipboard",
 		colour = G.C.PURPLE,
@@ -65,7 +65,7 @@ function PVP.main_menu.create_buttons()
 			return MPAPI.is_connected()
 		end,
 	})
-	b.practice = MPAPI.disableable_button({
+	b.practice = PVP.UI.disableable_button({
 		id = "mp_pvp_practice",
 		button = "mp_pvp_practice",
 		colour = G.C.ORANGE,
@@ -77,7 +77,7 @@ function PVP.main_menu.create_buttons()
 		-- Practice is fully local (MPAPI.create_local_lobby) -- no server needed.
 		enabled = true,
 	})
-	b.leaderboard = MPAPI.disableable_button({
+	b.leaderboard = PVP.UI.disableable_button({
 		id = "mp_pvp_leaderboard",
 		button = "mp_pvp_open_leaderboard",
 		colour = _leaderboard_colour,

@@ -29,7 +29,7 @@ local function deck_button()
 		deck_key and localize({ type = "name_text", key = deck_key, set = "Back" }) or deck_name,
 		stake_key and localize({ type = "name_text", key = stake_key, set = "Stake" }) or "",
 	}
-	return MPAPI.disableable_button({
+	return PVP.UI.disableable_button({
 		id = "mp_pvp_choose_deck",
 		button = "lobby_choose_deck",
 		colour = G.C.PURPLE,
